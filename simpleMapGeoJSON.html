@@ -21,7 +21,7 @@
 		<!-- zoom and coordinats for the load map -->
 		<script>
 			// load the map
-			var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+			var mymap = L.map('mapid').setView([51.525, -0.13], 13);
 			
 			// leaflet API
 		L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
@@ -43,12 +43,23 @@
 			},
 				"geometry": {
 				"type": "Point",
-				"coordinates": [-0.118092, 51.509865]
+				"coordinates": [-0.134469, 51.524452]
 			}
 		};
 		// and add it to the map
 		L.geoJSON(geojsonFeature).addTo(mymap).bindPopup("<b>"+geojsonFeature.properties.name+""+geojsonFeature.properties.popupContent+"<b>");
-		
+		// create a custom popup
+		var popup = L.popup();
+		// create an event detector to wait for the user's click event and then use the popup to show themwhere they clicked
+		// note that you don't need to do any complicated maths to convert screen coordinates to real worldcoordiantes - the Leaflet API does this for you
+		function onMapClick(e) {
+			popup
+				.setLatLng(e.latlng)
+				.setContent("You clicked the map at " + e.latlng.toString())
+				.openOn(mymap);
+		}
+		// now add the click event detector to the map
+		mymap.on('click', onMapClick);
 </script>
 </body>
 </html>
