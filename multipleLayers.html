@@ -15,6 +15,12 @@
 			}
 		</script>
 		
+		<script>
+			function removeEarthquakeData() {
+				alert("remove the earthquake data here");
+			}
+		</script>
+		
 		<script >
 		function loadEarthquakeData() {
 			// call the getEarthquakes code
@@ -61,6 +67,7 @@
 		<div id="mapid" style="width: 600px; height: 400px;"></div>
 		<!--button-->
 		<button id="loadData" name="loadData" onclick="loadEarthquakeData()">Click here to load the data </button>
+		<button id="removeEarthquakeData" name="removeEarthquakeData" onclick="removeEarthquakeData()">Click here to remove the Earthquake data </button>
 		<!-- zoom and coordinats for the load map -->
 		<script>
 			// load the map
